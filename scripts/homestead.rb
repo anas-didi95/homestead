@@ -284,6 +284,7 @@ class Homestead
                 puppet.manifest_file = "base.pp"
                 puppet.module_path = "puppet/modules"
                 puppet.options = "--verbose --trac"
+            end
         end
 
         # Configure All Of The Configured Databases

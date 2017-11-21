@@ -5,3 +5,4 @@ phpunit.xml
 /Homestead.json
 /after.sh
 /aliases
+/puppet/modules/oracle/files/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
