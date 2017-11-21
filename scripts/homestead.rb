@@ -198,6 +198,9 @@ class Homestead
                 if (type == "symfony")
                     type = "symfony2"
                 end
+                elsif (type == "hhvm")
+                    type = "hhvm"
+                end
 
                 config.vm.provision "shell" do |s|
                     s.name = "Creating Site: " + site["map"]
