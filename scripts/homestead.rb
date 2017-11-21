@@ -197,7 +197,6 @@ class Homestead
 
                 if (type == "symfony")
                     type = "symfony2"
-                end
                 elsif (type == "hhvm")
                     type = "hhvm"
                 end
