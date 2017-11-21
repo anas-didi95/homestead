@@ -273,6 +273,19 @@ class Homestead
             end
         end
 
+        # Install OracleDB If Necessary
+        if settings.has_key?("oracledb") && settings["oracledb"]
+            config.vm.provision "shell" do |s|
+                s.inline = "apt-get -y install puppet"
+            end
+            
+            config.vm.provision "puppet" do |puppet|
+                puppet.manifests_path = "puppet/manifests"
+                puppet.manifest_file = "base.pp"
+                puppet.module_path = "puppet/modules"
+                puppet.options = "--verbose --trac"
+        end
+
         # Configure All Of The Configured Databases
         if settings.has_key?("databases")
             settings["databases"].each do |db|
@@ -301,6 +314,18 @@ class Homestead
                         s.name = "Creating Couch Database: " + db
                         s.path = scriptDir + "/create-couch.sh"
                         s.args = [db]
+                    end
+                end
+
+                if settings.has_key?("oracledb") && settings["oracledb"]
+                    config.vm.provision "shell" do |s|
+                        s.name = "Creating Oracle Database: " + db
+                        s.path = scriptDir + "/create-oracle.sh"
+                        s.args = [db]
+                    end
+                    config.vm.provision "shell" do |s|
+                        s.name = "Install OCI8.so extension"
+                        s.path = scriptDir + "/install-oci8.sh"
                     end
                 end
             end
