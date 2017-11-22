@@ -17,6 +17,10 @@ folders:
 sites:
     - map: homestead.test
       to: /home/vagrant/code/public
+      php: "7.0"
+
+# require php7.0 
+oracledb: false
 
 databases:
     - homestead
