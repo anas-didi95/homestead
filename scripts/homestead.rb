@@ -326,10 +326,6 @@ class Homestead
                         s.path = scriptDir + "/create-oracle.sh"
                         s.args = [db]
                     end
-                    config.vm.provision "shell" do |s|
-                        s.name = "Install OCI8.so extension"
-                        s.path = scriptDir + "/install-oci8.sh"
-                    end
                 end
             end
         end
@@ -339,6 +335,13 @@ class Homestead
             s.name = "Clear Variables"
             s.path = scriptDir + "/clear-variables.sh"
         end
+        
+        # Install OCI8 extension
+        config.vm.provision "shell" do |s|
+            s.name = "Install OCI8.so extension"
+            s.path = scriptDir + "/install-oci8.sh"
+        end
+
 
         if settings.has_key?("variables")
             settings["variables"].each do |var|
